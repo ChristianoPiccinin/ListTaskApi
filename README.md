@@ -43,6 +43,27 @@ public class Task {
 ## Class TestTask
 ```java
 
+public class TestTask {
+    public static void main(String args[]) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://ec2-35-166-113-35.us-west-2.compute.amazonaws.com/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        TaskApi taskApi = retrofit.create(TaskApi.class);
+
+        try {
+            
+        	/* todas as tarefas*/
+            Call<List<Task>> listAllTask = taskApi.getAllTask();
+            Response<List<Task>> responseList = listAllTask.execute();
+            List<Task> taskList = responseList.body();
+            System.out.println("Todas as Tarefas: " + taskList);
+		
+		}catch(Exception e) {
+            e.printStackTrace();
+        }
+
 
 ```
 
