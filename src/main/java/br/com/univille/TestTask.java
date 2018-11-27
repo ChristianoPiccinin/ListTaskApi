@@ -18,48 +18,55 @@ public class TestTask {
 
         try {
             
-        	/* todas as tarefas*/
+        	/*** Todas as tarefas ***/
             Call<List<Task>> listAllTask = taskApi.getAllTask();
             Response<List<Task>> responseList = listAllTask.execute();
             List<Task> taskList = responseList.body();
-            System.out.println("Todas as Tarefas: " + taskList);
-
-            /***
-            
-            
-            Task task = new Task();
-            task.setDescription("new task created");
-            Call<List<Task>> listAllTask = taskApi.();
-                        Response<Task> responseCreateTask = 
-            
-            Task taskPost = new Task();
-            taskPost.setDescription("Alô");
-            Call<Task> callPost = taskApi.createTask(taskPost);
-            Response<Task> rPost = callPost.execute();
-
-            Task tPost = rPost.body();
-            System.out.println(tPost);
+            System.out.println("========= Todas as Tarefas ========= \n" + taskList);
+            System.out.println("====================================");
 
             
-            Task taskPut = new Task();
-            taskPut.setDescription("Teste");
-            Call<Void> callPut = taskApi.updateTask(62, taskPut);
-            Response<Void> rPut = callPut.execute();
-            if (rPut.isSuccessful()) {
-                System.out.println("Updateou!");
+            
+            
+            
+            /*** Criar tarefa ***/
+            
+            Task newTask = new Task();
+            newTask.setDescription(" nova tarefa está sendo criada");
+            Call<Task> createTask = taskApi.setTask(newTask);
+            Response<Task> responeNewTask = createTask.execute();
+            Task taskCreated = responeNewTask.body();
+            responeNewTask.isSuccessful();
+            Call<Task> retundIdTask = taskApi.getOneTask(taskCreated.getId());
+            Response<Task> responseIdTask = retundIdTask.execute();
+            Task taskId = responseIdTask.body();
+            System.out.println("======== Tarefa Criada ========"); 
+            System.out.println(taskId + "\n");
+            
+            
+            /*** Pegar tarefa especifica - tarefa 1441 ***/
+            Call<Task> returnGetById = taskApi.getOneTask(1441);
+            Response<Task> reponseGetById = returnGetById.execute();
+            Task taskGetById = reponseGetById.body();
+            System.out.println("========= Tarefa escolhida ==========");
+            System.out.println(taskGetById);
+            
+            
+            /*** Editar uma tarefa ***/
+            
+            
+            /*** Deletar tarefa ***/
+            int id =1445 ;
+            Call<Void> deleteTask = taskApi.deleteTask(1445); 
+            Response<Void> responseDelTask = deleteTask.execute();
+            responseDelTask.isSuccessful();
+            if (responseDelTask.isSuccessful()) {
+                System.out.println(" ======== Tarefa Deletada ======= ");
+                System.out.println(id);
             }
-
-
             
-            Call<Void> callDelete = taskApi.deleteTask(63);
-            Response<Void> rDelete = callDelete.execute();
             
-            if (rDelete.isSuccessful()) {
-                System.out.println("Se foi!");
-            }
-
-			***/
-
+            
             
         }catch(Exception e) {
             e.printStackTrace();
