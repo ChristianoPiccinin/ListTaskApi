@@ -174,3 +174,19 @@ public interface TaskApi {
 }
 
 ```
+
+
+# Testando Projeto 
+``` bash 
+========= Todas as Tarefas ========= 
+[Task [id=1440, description=Task edited by Chrsitiano lindo, done=true], Task [id=1441, description=Alô, done=false], Task [id=1442, description=Criacao de nova tarefa, done=false], Task [id=1443, description=Criacao de nova tarefa, done=false], Task [id=1444, description=Criacao de nova tarefa, done=false], Task [id=1455, description= nova tarefa está sendo criada, done=false], Task [id=1456, description= nova tarefa está sendo criada, done=false]]
+====================================
+======== Tarefa Criada ========
+Task [id=1457, description= nova tarefa está sendo criada, done=false]
+
+========= Tarefa escolhida ==========
+Task [id=1441, description=Alô, done=false]
+========= Tarefa Editada =======
+Task [id=1440, description=Task edited by Chrsitiano lindo, done=true]
+
+```
