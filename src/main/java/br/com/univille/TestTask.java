@@ -53,8 +53,23 @@ public class TestTask {
             
             
             /*** Editar uma tarefa ***/
+            Task editTask = new Task();
+            editTask.setId(1440);
+            editTask.setDescription("Task edited by Chrsitiano lindo");
+            editTask.setDone(true);
+            Call<Void> editTask2 = taskApi.updateTask(editTask.getId(), editTask);
+            Response<Void> responseEdit = editTask2.execute();
+            responseEdit.isSuccessful();
             
+            if (responseEdit.isSuccessful()) {
+            	System.out.println("========= Tarefa Editada =======");
+            	Call<Task> returnEditedTask = taskApi.getOneTask(editTask.getId());
+            	Response<Task> responseEditedTask = returnEditedTask.execute();
+            	Task editedTasks = responseEditedTask.body();
+            	System.out.println(editedTasks);
+            }
             
+                        
             /*** Deletar tarefa ***/
             int id =1445 ;
             Call<Void> deleteTask = taskApi.deleteTask(1445); 
